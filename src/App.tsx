@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { 
-  Terminal, 
   Layout, 
   BookOpen, 
   Cpu, 
@@ -12,8 +11,7 @@ import {
   Award, 
   RefreshCw, 
   CheckSquare,
-  Smartphone,
-  X 
+  Smartphone
 } from 'lucide-react';
 
 
@@ -39,8 +37,6 @@ export default function App() {
   
   // Interactive GUI states
   const [labStatus, setLabStatus] = useState<string>('idle');
-  const [activeServerConsole, setActiveServerConsole] = useState<string | null>(null);
-  const [serverConsoleLogs, setServerConsoleLogs] = useState<string[]>([]);
   const [selectedProject, setSelectedProject] = useState<'salesforce' | 'peerdrop'>('salesforce');
   const [activeArchNode, setActiveArchNode] = useState<string | null>(null);
   
@@ -69,42 +65,7 @@ export default function App() {
 
 
 
-  // Simulated server CLI console triggering in GUI mode
-  const triggerServerConsole = (serverName: string) => {
-    setActiveServerConsole(serverName);
-    setServerConsoleLogs(['Establishing SSH handshake over Zero-Trust Mesh...', 'Authenticating keys...', 'Connection established.', 'Root console open.']);
-    
-    setTimeout(() => {
-      setServerConsoleLogs(prev => [...prev, '$ docker compose ps']);
-    }, 800);
 
-    setTimeout(() => {
-      if (serverName === 'vps-1') {
-        setServerConsoleLogs(prev => [...prev, 
-          'NAME                     IMAGE                  STATUS      PORTS',
-          'nginx-proxy-manager      jc21/nginx-pm:latest   running     0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp',
-          'express-tracker-api      node:18-alpine         running     3000/tcp',
-          'portainer                portainer/portainer    running     9000/tcp',
-          'netbird-client           netbirdio/client       running     connected to mesh'
-        ]);
-      } else if (serverName === 'vps-2') {
-        setServerConsoleLogs(prev => [...prev, 
-          'NAME                     IMAGE                  STATUS      PORTS',
-          'coturn-relay             coturn/coturn          running     0.0.0.0:3478->3478/udp, 0.0.0.0:3478->3478/tcp',
-          'peerdrop-signaling       node:18-alpine         running     0.0.0.0:8000->8000/tcp',
-          'netbird-client           netbirdio/client       running     connected to mesh'
-        ]);
-      } else {
-        setServerConsoleLogs(prev => [...prev, 
-          'NAME                     IMAGE                  STATUS      PORTS',
-          'postgresql-spatial       postgis/postgis        running     5432/tcp',
-          'redis-session-cache      redis:alpine           running     6379/tcp',
-          'n8n-automation           n8nio/n8n:latest       running     5678/tcp',
-          'cloudflare-ddns-sync     cloudflare-api:latest  running     dynamic ipv6 updater (proxied)'
-        ]);
-      }
-    }, 1500);
-  };
 
 
 
@@ -1027,9 +988,9 @@ export default function App() {
                 {/* Server nodes grid */}
                 <div className="grid-3col">
                   {[
-                    { id: 'vps-1', name: 'vps-1.krishbansal.dev', type: 'Oracle Cloud ARM', role: 'Edge reverse proxy (Nginx Proxy Manager) and SaaS APIs.', icon: Globe },
-                    { id: 'vps-2', name: 'vps-2.krishbansal.dev', type: 'Oracle Cloud ARM', role: 'WebRTC Peer signaling node and Coturn STUN/TURN media relay.', icon: Shield },
-                    { id: 'minipc', name: 'bare-metal-mini-pc', type: 'Local Mini PC (Dynamic IPv6)', role: 'Database core (PostGIS), Redis session cache, and n8n automations. Exposed to IPv4 clients using Cloudflare API DDNS & Cloudflare Proxy (orange cloud).', icon: Database }
+                    { id: 'vps-1', name: 'VM 1', type: 'Oracle Cloud ARM', role: 'Deployments and Developments (VM)', icon: Globe },
+                    { id: 'vps-2', name: 'VM 2', type: 'Oracle Cloud ARM', role: 'VM2 (SaaS)', icon: Shield },
+                    { id: 'minipc', name: 'PC', type: 'Local Mini PC (Dynamic IPv6)', role: 'Testing and Experiments (PC)', icon: Database }
                   ].map(server => {
                     const Icon = server.icon;
                     return (
@@ -1049,45 +1010,10 @@ export default function App() {
                           <p className="school-subtitle" style={{ textAlign: 'left', marginBottom: '8px' }}>{server.type}</p>
                           <p className="school-desc" style={{ textAlign: 'left', fontSize: '11px' }}>{server.role}</p>
                         </div>
-
-                        <button 
-                          onClick={() => triggerServerConsole(server.id)}
-                          className="hero-action-btn"
-                          style={{ marginTop: '24px', width: '100%', justifyContent: 'center', fontSize: '10px' }}
-                        >
-                          <Terminal className="w-3 h-3 text-cyan-400" />
-                          $ open_ssh_console
-                        </button>
                       </div>
                     );
                   })}
                 </div>
-
-                {/* Server console simulation drawer */}
-                {activeServerConsole && (
-                  <div className="card-glass console-window">
-                    <div className="console-header-row">
-                      <h3 className="console-header-title">
-                        <Terminal className="w-4 h-4" />
-                        SECURE SSH SESSION: root@{activeServerConsole}.krishbansal.dev
-                      </h3>
-                      <button 
-                        onClick={() => setActiveServerConsole(null)}
-                        className="console-close-btn"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                    
-                    <div className="console-screen">
-                      {serverConsoleLogs.map((log, index) => (
-                        <p key={index} className={log.startsWith('$') ? 'text-cyan-400' : log.includes('running') ? 'text-emerald-400' : 'text-slate-400'}>
-                          {log}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
             )}
 
