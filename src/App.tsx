@@ -700,28 +700,6 @@ export default function App() {
                     <div className="project-details-layout">
                       {/* Left Column: Metrics and Pipeline */}
                       <div className="project-col-specs">
-                        {/* System Metrics Card */}
-                        <div className="card-glass">
-                          <h3 className="section-title-mono" style={{ marginBottom: '12px' }}>System Metrics</h3>
-                          <div className="specs-table">
-                            <div className="specs-row">
-                              <span className="specs-label">Geofence Latency</span>
-                              <span className="specs-value text-indigo-400">&lt; 1.5ms</span>
-                            </div>
-                            <div className="specs-row">
-                              <span className="specs-label">Mobile UI Frame Rate</span>
-                              <span className="specs-value text-indigo-400">60 FPS (GPU)</span>
-                            </div>
-                            <div className="specs-row">
-                              <span className="specs-label">Offline Cache Sync</span>
-                              <span className="specs-value text-indigo-400">&lt; 120ms</span>
-                            </div>
-                            <div className="specs-row">
-                              <span className="specs-label">Docker footprint</span>
-                              <span className="specs-value text-indigo-400">~240MB RAM</span>
-                            </div>
-                          </div>
-                        </div>
 
                         {/* CI/CD Pipeline Card */}
                         <div className="card-glass">
@@ -870,28 +848,6 @@ export default function App() {
                     <div className="project-details-layout">
                       {/* Left Column: Metrics and Pipeline */}
                       <div className="project-col-specs">
-                        {/* System Metrics Card */}
-                        <div className="card-glass">
-                          <h3 className="section-title-mono" style={{ marginBottom: '12px' }}>System Metrics</h3>
-                          <div className="specs-table">
-                            <div className="specs-row">
-                              <span className="specs-label">WebRTC Throughput</span>
-                              <span className="specs-value text-indigo-400">Up to 100 Mbps</span>
-                            </div>
-                            <div className="specs-row">
-                              <span className="specs-label">Signaling Time</span>
-                              <span className="specs-value text-indigo-400">~80ms</span>
-                            </div>
-                            <div className="specs-row">
-                              <span className="specs-label">Memory Overhead</span>
-                              <span className="specs-value text-indigo-400">&lt; 5% CPU Cap</span>
-                            </div>
-                            <div className="specs-row">
-                              <span className="specs-label">TURN Latency</span>
-                              <span className="specs-value text-indigo-400">&lt; 25ms overhead</span>
-                            </div>
-                          </div>
-                        </div>
 
                         {/* CI/CD Pipeline Card */}
                         <div className="card-glass">
