@@ -20,6 +20,22 @@ import {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('dashboard');
+  const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
+
+  const handleMailClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText('contact@krishbansal.dev')
+      .then(() => {
+        setCopiedEmail(true);
+        setTimeout(() => setCopiedEmail(false), 2000);
+      })
+      .catch((err) => {
+        console.error('Could not copy email address: ', err);
+      });
+    
+    // Attempt to open mail app as parallel default behaviour
+    window.location.href = 'mailto:contact@krishbansal.dev';
+  };
   
   // Interactive GUI states
   const [labStatus, setLabStatus] = useState<string>('idle');
@@ -159,9 +175,21 @@ export default function App() {
                 <a href="https://linkedin.com/in/krishbansal-dev" target="_blank" rel="noreferrer" className="social-link">
                   <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
                 </a>
-                <a href="mailto:contact@krishbansal.dev" className="social-link">
-                  <Mail className="w-4 h-4" />
-                </a>
+                <div style={{ position: 'relative' }}>
+                  <button 
+                    onClick={handleMailClick} 
+                    className="social-link"
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                    title="Click to copy or email: contact@krishbansal.dev"
+                  >
+                    <Mail className="w-4 h-4" />
+                  </button>
+                  {copiedEmail && (
+                    <span className="copied-tooltip">
+                      Copied!
+                    </span>
+                  )}
+                </div>
                 <a href="https://krishbansal.dev" target="_blank" rel="noreferrer" className="social-link">
                   <Globe className="w-4 h-4" />
                 </a>

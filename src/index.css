@@ -1429,4 +1429,32 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
 }
 
+/* Floating Copied Tooltip for Email Fallback */
+.copied-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  background-color: var(--accent-primary);
+  color: var(--text-white);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+  animation: fadeInOut 2s ease forwards;
+  pointer-events: none;
+  z-index: 100;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, 4px); }
+  15% { opacity: 1; transform: translate(-50%, 0); }
+  85% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -4px); }
+}
+
+
 
