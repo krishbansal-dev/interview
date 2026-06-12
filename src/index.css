@@ -655,20 +655,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Project text layout */
-.project-details-grid {
+/* Redesigned Projects Dashboard Layout */
+.project-details-layout {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
 }
 
 @media (min-width: 1024px) {
-  .project-details-grid {
-    grid-template-columns: 2fr 3fr;
+  .project-details-layout {
+    grid-template-columns: 1.25fr 1.75fr;
   }
+}
+
+.project-col-specs,
+.project-col-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .badge-wrap {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 12px;
 }
@@ -720,99 +729,182 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 4px;
 }
 
-/* Interactive Blueprint Node layout */
-.node-diagram-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+/* System Specs & Metrics Table */
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
 }
 
-.node-diagram-grid {
+.specs-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 12px;
+}
+
+.specs-row:last-child {
+  border-bottom: none;
+}
+
+.specs-label {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.specs-value {
+  color: var(--text-white);
+  font-weight: 600;
+  text-align: right;
+}
+
+/* CI/CD Pipeline Steps */
+.pipeline-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.pipeline-step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.pipeline-step-badge {
+  font-size: 8px;
+  font-family: var(--font-mono);
+  padding: 2px 6px;
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--accent-primary);
+  border-radius: 4px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+.pipeline-step-desc {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+/* Redesigned Enterprise Topology Diagram */
+.topology-diagram-container {
+  padding: 16px 0;
+  width: 100%;
+}
+
+.topology-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
-  padding: 24px 0;
+  gap: 20px;
 }
 
 @media (min-width: 640px) {
-  .node-diagram-grid {
-    grid-template-columns: 1.2fr 0.6fr 1.2fr;
+  .topology-grid {
+    grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
   }
 }
 
-.node-btn {
-  padding: 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  background-color: rgba(0, 0, 0, 0.3);
-  color: var(--text-muted);
+.topology-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.topology-group-title {
+  font-size: 9px;
   font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
 }
 
-.node-btn:hover {
-  color: var(--text-white);
-  border-color: rgba(99, 102, 241, 0.3);
-  background-color: rgba(99, 102, 241, 0.02);
-}
-
-.node-btn.active {
-  background-color: rgba(99, 102, 241, 0.12);
-  border-color: var(--accent-primary);
-  color: var(--text-white);
-  box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
-}
-
-/* Horizontal line connector in diagrams */
-.diagram-line-connector {
+.topology-node {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.diagram-line-label {
-  font-size: 9px;
-  font-family: var(--font-mono);
-  color: var(--text-muted);
-  margin-bottom: 4px;
+  padding: 16px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(13, 18, 33, 0.3);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   text-align: center;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
-.diagram-line-bar {
+.topology-node::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 2px;
-  background-color: #1e293b;
-  position: relative;
+  background: transparent;
+  transition: all 0.2s ease;
 }
 
-.diagram-line-arrow {
-  position: absolute;
-  top: -3px;
-  right: 0;
+.topology-node:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.topology-node.active {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.15);
+}
+
+.topology-node.active::before {
+  background: var(--grad-primary);
+}
+
+.topology-node-icon {
+  margin-bottom: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.topology-node.active .topology-node-icon {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--accent-primary);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+}
+
+.topology-node-title {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--text-white);
+}
+
+.topology-node-badge {
   font-size: 8px;
-  color: #1e293b;
-  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  margin-top: 6px;
+  font-family: var(--font-mono);
 }
 
-/* Vertical grid line dividers */
-.diagram-vertical-connector {
-  grid-column: span 3;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 48px;
-  height: 24px;
-}
-
-.vertical-line {
-  width: 2px;
-  height: 24px;
-  background-color: #1e293b;
+.topology-node.active .topology-node-badge {
+  background: rgba(99, 102, 241, 0.12);
+  color: #a5b4fc;
 }
 
 .node-explanation-box {
@@ -823,7 +915,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 13px;
   line-height: 1.5;
   color: #94a3b8;
-  min-height: 90px;
+  min-height: 80px;
 }
 
 /* SSH drawer console styling */
@@ -1314,4 +1406,27 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
   }
 }
+
+/* Dashboard 2-column Grid Layout */
+.dashboard-grid-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .dashboard-grid-main {
+    grid-template-columns: 1.75fr 1.25fr;
+    align-items: stretch;
+  }
+}
+
+.dashboard-col-left,
+.dashboard-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
 
