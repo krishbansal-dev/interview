@@ -1646,6 +1646,17 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--accent-primary);
 }
 
+.resume-cert-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+.resume-cert-link:hover .resume-edu-title {
+  text-decoration: underline;
+  color: var(--accent-primary) !important;
+}
+
 /* Print Overrides */
 @media print {
   @page {
@@ -1742,6 +1753,16 @@ h1, h2, h3, h4, h5, h6 {
     color: #4f46e5 !important;
     background-color: #f3f4f6 !important;
     border: 1px solid #e5e7eb !important;
+  }
+  
+  .resume-cert-link {
+    text-decoration: none;
+    color: #000000 !important;
+  }
+  
+  .resume-cert-link:hover .resume-edu-title {
+    text-decoration: underline;
+    color: #4f46e5 !important;
   }
 }
 

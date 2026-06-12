@@ -1294,12 +1294,26 @@ export default function App() {
                         <h2 className="resume-section-title">Certifications</h2>
                         
                         <div className="resume-cert-item">
-                          <h3 className="resume-edu-title">AI Fundamentals</h3>
+                          <a 
+                            href="https://www.credly.com/badges/064f4e33-ed5b-4e06-990c-1b60108eded7/linked_in_profile" 
+                            target="_blank" 
+                            rel="noreferrer"
+                            className="resume-cert-link"
+                          >
+                            <h3 className="resume-edu-title">AI Fundamentals ↗</h3>
+                          </a>
                           <div className="resume-edu-meta">IBM • Credly Verified</div>
                         </div>
 
                         <div className="resume-cert-item" style={{ marginBottom: 0 }}>
-                          <h3 className="resume-edu-title">Google AI Essentials</h3>
+                          <a 
+                            href="https://coursera.org/share/76a9e1aef17ebefa9b286fd486e3047a" 
+                            target="_blank" 
+                            rel="noreferrer"
+                            className="resume-cert-link"
+                          >
+                            <h3 className="resume-edu-title">Google AI Essentials ↗</h3>
+                          </a>
                           <div className="resume-edu-meta">Google • Coursera Verified</div>
                         </div>
                       </div>
