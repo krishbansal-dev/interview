@@ -11,7 +11,8 @@ import {
   RefreshCw, 
   CheckSquare,
   Smartphone,
-  GraduationCap
+  GraduationCap,
+  FileText
 } from 'lucide-react';
 
 
@@ -109,6 +110,7 @@ export default function App() {
                   { id: 'projects', label: 'Systems & Projects', icon: Cpu },
                   { id: 'education', label: 'Education', icon: GraduationCap },
                   { id: 'certifications', label: 'Certifications', icon: Award },
+                  { id: 'resume', label: 'Resume Sheet', icon: FileText },
                 ].map(item => {
                   const Icon = item.icon;
                   return (
@@ -167,6 +169,7 @@ export default function App() {
                 { id: 'projects', label: 'Architecture' },
                 { id: 'education', label: 'Education' },
                 { id: 'certifications', label: 'Certifications' },
+                { id: 'resume', label: 'Resume' },
               ].map(item => (
                 <button
                   key={item.id}
@@ -1170,6 +1173,161 @@ export default function App() {
                         <Globe className="w-4 h-4" />
                         Verify on Coursera
                       </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* TAB CONTENT: RESUME SHEET */}
+            {activeTab === 'resume' && (
+              <div className="flex-col-gap-24">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div>
+                    <h2 className="school-title" style={{ textAlign: 'left', marginBottom: '8px' }}>One-Page Resume Sheet</h2>
+                    <p className="school-desc" style={{ textAlign: 'left', fontSize: '13px' }}>A highly polished, print-friendly profile view. Press <kbd style={{ background: 'rgba(255,255,255,0.08)', padding: '2px 6px', borderRadius: '4px', fontStyle: 'normal' }}>Ctrl + P</kbd> to save or print this sheet directly.</p>
+                  </div>
+                  <button 
+                    onClick={() => window.print()}
+                    className="hero-action-btn"
+                    style={{ margin: 0 }}
+                  >
+                    <FileText className="w-4 h-4 text-indigo-400" />
+                    Print / Save PDF
+                  </button>
+                </div>
+
+                <div className="resume-sheet">
+                  {/* Header */}
+                  <div className="resume-header">
+                    <div>
+                      <h1 className="resume-name">Krish Bansal</h1>
+                      <div className="resume-title">Systems Architect & AI-Native Engineer</div>
+                    </div>
+                    <div className="resume-contact">
+                      Panchkula, HR, India<br />
+                      <a href="mailto:contact@krishbansal-dev">contact@krishbansal-dev</a><br />
+                      <a href="https://github.com/krishbansal-dev" target="_blank" rel="noreferrer">github.com/krishbansal-dev</a><br />
+                      <a href="https://linkedin.com/in/krishbansal-dev" target="_blank" rel="noreferrer">linkedin.com/in/krishbansal-dev</a><br />
+                      <a href="https://krishbansal.dev" target="_blank" rel="noreferrer">krishbansal.dev</a>
+                    </div>
+                  </div>
+
+                  <div className="resume-body-grid">
+                    {/* Left Column: Education, Skills, Certs */}
+                    <div>
+                      {/* Education */}
+                      <div className="resume-section">
+                        <h2 className="resume-section-title">Education</h2>
+                        
+                        <div className="resume-edu-item">
+                          <h3 className="resume-edu-title">Plaksha University</h3>
+                          <div className="resume-edu-meta">Interview: 15th June 2026</div>
+                          <p className="resume-edu-desc">Applying for Interdisciplinary Technology & Engineering; focus on Applied-First Systems.</p>
+                        </div>
+
+                        <div className="resume-edu-item">
+                          <h3 className="resume-edu-title">Sri Chaitanya & LMJ School</h3>
+                          <div className="resume-edu-meta">Sr Secondary (11th & 12th)</div>
+                          <p className="resume-edu-desc">Physics, Chemistry, and Mathematics (PCM). Achieved 90+ percentile in JEE Main Mathematics.</p>
+                        </div>
+
+                        <div className="resume-edu-item" style={{ marginBottom: 0 }}>
+                          <h3 className="resume-edu-title">DC Model School</h3>
+                          <div className="resume-edu-meta">High School (10th)</div>
+                          <p className="resume-edu-desc">Sector-7 Panchkula. Fostered core science and math concepts.</p>
+                        </div>
+                      </div>
+
+                      {/* Technical Skills */}
+                      <div className="resume-section">
+                        <h2 className="resume-section-title">Technical Skills</h2>
+                        
+                        <div className="resume-skills-group">
+                          <h3 className="resume-skills-title">Languages & Frameworks</h3>
+                          <div className="resume-skills-tags">
+                            <span className="resume-skill-tag">TypeScript</span>
+                            <span className="resume-skill-tag">JavaScript</span>
+                            <span className="resume-skill-tag">React</span>
+                            <span className="resume-skill-tag">React Native (Expo)</span>
+                            <span className="resume-skill-tag">Node.js</span>
+                            <span className="resume-skill-tag">Express</span>
+                            <span className="resume-skill-tag">HTML/CSS</span>
+                          </div>
+                        </div>
+
+                        <div className="resume-skills-group">
+                          <h3 className="resume-skills-title">Infra, DevOps & Security</h3>
+                          <div className="resume-skills-tags">
+                            <span className="resume-skill-tag">Docker</span>
+                            <span className="resume-skill-tag">Docker Compose</span>
+                            <span className="resume-skill-tag">GitHub Actions (CI/CD)</span>
+                            <span className="resume-skill-tag">Linux CLI & SSH</span>
+                            <span className="resume-skill-tag">Oracle Cloud VPS</span>
+                            <span className="resume-skill-tag">Netbird Overlay VPN</span>
+                          </div>
+                        </div>
+
+                        <div className="resume-skills-group" style={{ marginBottom: 0 }}>
+                          <h3 className="resume-skills-title">Databases & Routing</h3>
+                          <div className="resume-skills-tags">
+                            <span className="resume-skill-tag">PostgreSQL</span>
+                            <span className="resume-skill-tag">PostGIS (Spatial)</span>
+                            <span className="resume-skill-tag">Redis</span>
+                            <span className="resume-skill-tag">SQLite</span>
+                            <span className="resume-skill-tag">Cloudflare Tunnels</span>
+                            <span className="resume-skill-tag">WebRTC P2P</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Certifications */}
+                      <div className="resume-section" style={{ marginBottom: 0 }}>
+                        <h2 className="resume-section-title">Certifications</h2>
+                        
+                        <div className="resume-cert-item">
+                          <h3 className="resume-edu-title">AI Fundamentals</h3>
+                          <div className="resume-edu-meta">IBM • Credly Verified</div>
+                        </div>
+
+                        <div className="resume-cert-item" style={{ marginBottom: 0 }}>
+                          <h3 className="resume-edu-title">Google AI Essentials</h3>
+                          <div className="resume-edu-meta">Google • Coursera Verified</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Column: Projects */}
+                    <div>
+                      <div className="resume-section" style={{ marginBottom: 0 }}>
+                        <h2 className="resume-section-title">Technical Projects</h2>
+
+                        {/* Project 1 */}
+                        <div className="resume-proj-item">
+                          <div className="resume-proj-title">
+                            <span>SalesForce Tracker</span>
+                            <span className="resume-proj-tech">React Native • Node • PostGIS</span>
+                          </div>
+                          <div className="resume-proj-role">Lead Architect & Engineer</div>
+                          <p className="resume-proj-bullet">Architected a 3-tier geofencing audit platform comprised of an Expo React Native mobile client, an Express API, and a PostGIS spatial database cluster.</p>
+                          <p className="resume-proj-bullet">Implemented Postgres geofencing query algorithms to verify salesman presence within 50m of shop targets on check-in.</p>
+                          <p className="resume-proj-bullet">Developed local SQLite queue synchronization on client nodes to cache location checkpoints during cellular dropouts and upload batches on reconnection.</p>
+                          <p className="resume-proj-bullet">Designed a fully automated GitHub Actions pipeline executing secure SSH deployment, container builds, and cache pruning on target Oracle Cloud nodes.</p>
+                        </div>
+
+                        {/* Project 2 */}
+                        <div className="resume-proj-item" style={{ marginBottom: 0 }}>
+                          <div className="resume-proj-title">
+                            <span>PeerDrop Share Engine</span>
+                            <span className="resume-proj-tech">WebRTC P2P • WebSockets • Coturn</span>
+                          </div>
+                          <div className="resume-proj-role">Lead Architect & Creator</div>
+                          <p className="resume-proj-bullet">Engineered a decentralized peer-to-peer browser filesharing engine utilizing direct SCTP channels to bypass server storage capacity limits.</p>
+                          <p className="resume-proj-bullet">Constructed real-time signaling tunnels over encrypted WebSockets to negotiate peer connections via room codes.</p>
+                          <p className="resume-proj-bullet">Self-hosted and custom-routed Coturn TURN/STUN relay nodes to traverse strict corporate symmetric NAT routers and firewalls.</p>
+                          <p className="resume-proj-bullet">Configured and maintained over 7 domains and Cloudflare tunnels to route local ports securely through double NATs.</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
