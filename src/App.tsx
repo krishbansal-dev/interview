@@ -10,7 +10,8 @@ import {
   Award, 
   RefreshCw, 
   CheckSquare,
-  Smartphone
+  Smartphone,
+  GraduationCap
 } from 'lucide-react';
 
 
@@ -106,7 +107,8 @@ export default function App() {
                   { id: 'story', label: 'Story & Philosophy', icon: BookOpen },
                   { id: 'discussion', label: 'Discussion Index', icon: CheckSquare },
                   { id: 'projects', label: 'Systems & Projects', icon: Cpu },
-                  { id: 'education', label: 'Education', icon: Award },
+                  { id: 'education', label: 'Education', icon: GraduationCap },
+                  { id: 'certifications', label: 'Certifications', icon: Award },
                 ].map(item => {
                   const Icon = item.icon;
                   return (
@@ -164,6 +166,7 @@ export default function App() {
                 { id: 'discussion', label: 'Topics' },
                 { id: 'projects', label: 'Architecture' },
                 { id: 'education', label: 'Education' },
+                { id: 'certifications', label: 'Certifications' },
               ].map(item => (
                 <button
                   key={item.id}
@@ -1083,6 +1086,92 @@ export default function App() {
                       </div>
                     );
                   })}
+                </div>
+              </div>
+            )}
+
+            {/* TAB CONTENT: CERTIFICATIONS */}
+            {activeTab === 'certifications' && (
+              <div className="flex-col-gap-24">
+                <div>
+                  <h2 className="school-title" style={{ textAlign: 'left', marginBottom: '8px' }}>Professional Certifications</h2>
+                  <p className="school-desc" style={{ textAlign: 'left', fontSize: '13px' }}>Verified industry credentials and badges in Artificial Intelligence.</p>
+                </div>
+                
+                <div className="grid-2col">
+                  {/* IBM Artificial Intelligence Fundamentals */}
+                  <div className="card-glass flex flex-col justify-between" style={{ padding: '24px', position: 'relative', overflow: 'hidden' }}>
+                    <div className="hero-glow-1" style={{ top: '-20%', left: '10%', opacity: 0.1 }}></div>
+                    <div>
+                      <div className="logo-frame-container" style={{ marginBottom: '16px' }}>
+                        <div className="school-logo-circle">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" 
+                            alt="IBM Logo" 
+                            className="school-logo-img"
+                          />
+                        </div>
+                      </div>
+                      
+                      <h3 className="school-title" style={{ fontSize: '16px', fontWeight: 'bold' }}>Artificial Intelligence Fundamentals</h3>
+                      <p className="school-subtitle" style={{ color: '#60a5fa', marginBottom: '12px' }}>IBM • Credly Verified Badge</p>
+                      
+                      <div className="project-list-bullets" style={{ marginBottom: '16px' }}>
+                        <p className="project-bullet-item" style={{ fontSize: '12px' }}><span className="project-bullet-tag">Core Concepts:</span> Deep learning models, neural networks, natural language processing (NLP), computer vision, and cognitive computing foundations.</p>
+                        <p className="project-bullet-item" style={{ fontSize: '12px' }}><span className="project-bullet-tag">Ethics & Trust:</span> IBM-aligned standards for mitigating bias, ensuring transparency, and building trustworthy, human-centric AI systems.</p>
+                      </div>
+                    </div>
+
+                    <div style={{ marginTop: '16px' }}>
+                      <a 
+                        href="https://www.credly.com/badges/064f4e33-ed5b-4e06-990c-1b60108eded7/linked_in_profile" 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="hero-action-btn w-full"
+                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+                      >
+                        <Globe className="w-4 h-4" />
+                        Verify Badge on Credly
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Google AI Essentials */}
+                  <div className="card-glass flex flex-col justify-between" style={{ padding: '24px', position: 'relative', overflow: 'hidden' }}>
+                    <div className="hero-glow-2" style={{ top: '-20%', right: '10%', opacity: 0.1 }}></div>
+                    <div>
+                      <div className="logo-frame-container" style={{ marginBottom: '16px' }}>
+                        <div className="school-logo-circle">
+                          <img 
+                            src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" 
+                            alt="Google Logo" 
+                            className="school-logo-img"
+                          />
+                        </div>
+                      </div>
+                      
+                      <h3 className="school-title" style={{ fontSize: '16px', fontWeight: 'bold' }}>Google AI Essentials</h3>
+                      <p className="school-subtitle" style={{ color: '#34d399', marginBottom: '12px' }}>Google • Coursera Verified Share</p>
+                      
+                      <div className="project-list-bullets" style={{ marginBottom: '16px' }}>
+                        <p className="project-bullet-item" style={{ fontSize: '12px' }}><span className="project-bullet-tag">Generative AI:</span> Mastering LLMs for workplace productivity, research, automated summarization, and creative brainstorming.</p>
+                        <p className="project-bullet-item" style={{ fontSize: '12px' }}><span className="project-bullet-tag">Prompt Engineering:</span> Devising structural strategies for prompts, few-shot prompting, role-play configurations, and fine-tuning output responses.</p>
+                      </div>
+                    </div>
+
+                    <div style={{ marginTop: '16px' }}>
+                      <a 
+                        href="https://coursera.org/share/76a9e1aef17ebefa9b286fd486e3047a" 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="hero-action-btn w-full"
+                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+                      >
+                        <Globe className="w-4 h-4" />
+                        Verify on Coursera
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
