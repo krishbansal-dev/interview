@@ -4,7 +4,6 @@ import {
   BookOpen, 
   Cpu, 
   Globe, 
-  Server, 
   Mail, 
   Database, 
   Shield, 
@@ -36,7 +35,6 @@ export default function App() {
   };
   
   // Interactive GUI states
-  const [labStatus, setLabStatus] = useState<string>('idle');
   const [selectedProject, setSelectedProject] = useState<'salesforce' | 'peerdrop'>('salesforce');
   const [activeArchNode, setActiveArchNode] = useState<string | null>(null);
   
@@ -44,21 +42,11 @@ export default function App() {
   
   // Simulated stats state
   const [netTraffic, setNetTraffic] = useState<number[]>(Array(10).fill(0).map(() => Math.floor(Math.random() * 40) + 10));
-  const [pingTimes, setPingTimes] = useState<{ [key: string]: number }>({
-    'vps-1': 14,
-    'vps-2': 16,
-    'minipc': 22
-  });
 
   // Simulate network traffic updates
   useEffect(() => {
     const interval = setInterval(() => {
       setNetTraffic(prev => [...prev.slice(1), Math.floor(Math.random() * 50) + 15]);
-      setPingTimes({
-        'vps-1': Math.floor(Math.random() * 6) + 12,
-        'vps-2': Math.floor(Math.random() * 8) + 13,
-        'minipc': Math.floor(Math.random() * 10) + 18,
-      });
     }, 3000);
     return () => clearInterval(interval);
   }, []);
@@ -108,7 +96,6 @@ export default function App() {
                   { id: 'story', label: 'Story & Philosophy', icon: BookOpen },
                   { id: 'discussion', label: 'Discussion Index', icon: CheckSquare },
                   { id: 'projects', label: 'Systems & Projects', icon: Cpu },
-                  { id: 'lab', label: 'Self-Hosted Lab', icon: Server },
                   { id: 'education', label: 'Education', icon: Award },
                 ].map(item => {
                   const Icon = item.icon;
@@ -168,7 +155,6 @@ export default function App() {
                 { id: 'story', label: 'Story' },
                 { id: 'discussion', label: 'Topics' },
                 { id: 'projects', label: 'Architecture' },
-                { id: 'lab', label: 'Lab' },
                 { id: 'education', label: 'Education' },
               ].map(item => (
                 <button
@@ -964,58 +950,7 @@ export default function App() {
               </div>
             )}
 
-            {/* TAB CONTENT: SELF-HOSTED LAB */}
-            {activeTab === 'lab' && (
-              <div className="flex-col-gap-24">
-                <div className="flex justify-between items-center" style={{ marginBottom: '16px' }}>
-                  <div>
-                    <h2 className="school-title" style={{ textAlign: 'left', marginBottom: '4px' }}>Interactive Lab Manager</h2>
-                    <p className="school-desc" style={{ textAlign: 'left', fontSize: '12px' }}>Pings and Docker container logs mapped via the Netbird Zero-Trust Mesh.</p>
-                  </div>
-                  
-                  <button 
-                    onClick={() => {
-                      setLabStatus('checking');
-                      setTimeout(() => setLabStatus('idle'), 1200);
-                    }}
-                    className="hero-action-btn"
-                  >
-                    <RefreshCw className={`w-3.5 h-3.5 ${labStatus === 'checking' ? 'animate-spin text-indigo-400' : ''}`} />
-                    Test Mesh Latency
-                  </button>
-                </div>
 
-                {/* Server nodes grid */}
-                <div className="grid-3col">
-                  {[
-                    { id: 'vps-1', name: 'VM 1', type: 'Oracle Cloud ARM', role: 'Deployments and Developments (VM)', icon: Globe },
-                    { id: 'vps-2', name: 'VM 2', type: 'Oracle Cloud ARM', role: 'VM2 (SaaS)', icon: Shield },
-                    { id: 'minipc', name: 'PC', type: 'Local Mini PC (Dynamic IPv6)', role: 'Testing and Experiments (PC)', icon: Database }
-                  ].map(server => {
-                    const Icon = server.icon;
-                    return (
-                      <div key={server.id} className="card-glass flex flex-col justify-between">
-                        <div>
-                          <div className="flex justify-between items-start mb-3">
-                            <div className="icon-box">
-                              <Icon className="w-4 h-4 text-indigo-400" />
-                            </div>
-                            <span className="ping-badge">
-                              <span className="ping-dot"></span>
-                              {pingTimes[server.id] || 15}ms
-                            </span>
-                          </div>
-                          
-                          <h4 className="school-title" style={{ textAlign: 'left', fontSize: '13px', fontFamily: 'var(--font-mono)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{server.name}</h4>
-                          <p className="school-subtitle" style={{ textAlign: 'left', marginBottom: '8px' }}>{server.type}</p>
-                          <p className="school-desc" style={{ textAlign: 'left', fontSize: '11px' }}>{server.role}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
 
             {/* TAB CONTENT: EDUCATION */}
             {activeTab === 'education' && (
