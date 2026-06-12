@@ -87,7 +87,7 @@ export default function App() {
                 Interview Build
               </span>
             </h1>
-            <p className="header-subtitle">📍 Panchkula, HR, India</p>
+            <p className="header-subtitle">Panchkula, HR, India</p>
           </div>
         </div>
 
