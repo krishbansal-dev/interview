@@ -1103,7 +1103,13 @@ export default function App() {
                 
                 <div className="grid-2col">
                   {/* IBM Artificial Intelligence Fundamentals */}
-                  <div className="card-glass flex flex-col justify-between" style={{ padding: '24px', position: 'relative', overflow: 'hidden' }}>
+                  <a 
+                    href="https://www.credly.com/badges/064f4e33-ed5b-4e06-990c-1b60108eded7/linked_in_profile" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="card-glass flex flex-col justify-between card-clickable" 
+                    style={{ padding: '24px', position: 'relative', overflow: 'hidden', textDecoration: 'none' }}
+                  >
                     <div className="hero-glow-1" style={{ top: '-20%', left: '10%', opacity: 0.1 }}></div>
                     <div>
                       <div className="logo-frame-container" style={{ marginBottom: '16px' }}>
@@ -1126,21 +1132,24 @@ export default function App() {
                     </div>
 
                     <div style={{ marginTop: '16px' }}>
-                      <a 
-                        href="https://www.credly.com/badges/064f4e33-ed5b-4e06-990c-1b60108eded7/linked_in_profile" 
-                        target="_blank" 
-                        rel="noreferrer"
+                      <div 
                         className="hero-action-btn w-full"
-                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}
                       >
-                        <Globe className="w-4 h-4" />
+                        <Globe className="w-4 h-4 text-indigo-400" />
                         Verify Badge on Credly
-                      </a>
+                      </div>
                     </div>
-                  </div>
+                  </a>
 
                   {/* Google AI Essentials */}
-                  <div className="card-glass flex flex-col justify-between" style={{ padding: '24px', position: 'relative', overflow: 'hidden' }}>
+                  <a 
+                    href="https://coursera.org/share/76a9e1aef17ebefa9b286fd486e3047a" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="card-glass flex flex-col justify-between card-clickable" 
+                    style={{ padding: '24px', position: 'relative', overflow: 'hidden', textDecoration: 'none' }}
+                  >
                     <div className="hero-glow-2" style={{ top: '-20%', right: '10%', opacity: 0.1 }}></div>
                     <div>
                       <div className="logo-frame-container" style={{ marginBottom: '16px' }}>
@@ -1163,18 +1172,15 @@ export default function App() {
                     </div>
 
                     <div style={{ marginTop: '16px' }}>
-                      <a 
-                        href="https://coursera.org/share/76a9e1aef17ebefa9b286fd486e3047a" 
-                        target="_blank" 
-                        rel="noreferrer"
+                      <div 
                         className="hero-action-btn w-full"
-                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}
                       >
-                        <Globe className="w-4 h-4" />
+                        <Globe className="w-4 h-4 text-indigo-400" />
                         Verify on Coursera
-                      </a>
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
               </div>
             )}
@@ -1185,16 +1191,18 @@ export default function App() {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
                     <h2 className="school-title" style={{ textAlign: 'left', marginBottom: '8px' }}>One-Page Resume Sheet</h2>
-                    <p className="school-desc" style={{ textAlign: 'left', fontSize: '13px' }}>A highly polished, print-friendly profile view. Press <kbd style={{ background: 'rgba(255,255,255,0.08)', padding: '2px 6px', borderRadius: '4px', fontStyle: 'normal' }}>Ctrl + P</kbd> to save or print this sheet directly.</p>
+                    <p className="school-desc" style={{ textAlign: 'left', fontSize: '13px' }}>A highly polished profile view. Click 'Open Resume PDF' to view, print, or download the official PDF version.</p>
                   </div>
-                  <button 
-                    onClick={() => window.print()}
+                  <a 
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noreferrer"
                     className="hero-action-btn"
-                    style={{ margin: 0 }}
+                    style={{ margin: 0, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}
                   >
                     <FileText className="w-4 h-4 text-indigo-400" />
-                    Print / Save PDF
-                  </button>
+                    Open Resume PDF
+                  </a>
                 </div>
 
                 <div className="resume-sheet">

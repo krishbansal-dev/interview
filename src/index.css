@@ -332,6 +332,16 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: var(--shadow-lg), var(--shadow-neon);
 }
 
+.card-clickable {
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-clickable:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-primary) !important;
+}
+
 /* Hero Section layout */
 .hero-card {
   padding: 32px;
