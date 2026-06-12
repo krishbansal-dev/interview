@@ -42,11 +42,21 @@ export default function App() {
   
   // Simulated stats state
   const [netTraffic, setNetTraffic] = useState<number[]>(Array(10).fill(0).map(() => Math.floor(Math.random() * 40) + 10));
+  const [pingTimes, setPingTimes] = useState<{ [key: string]: number }>({
+    'vps-1': 14,
+    'vps-2': 16,
+    'minipc': 22
+  });
 
   // Simulate network traffic updates
   useEffect(() => {
     const interval = setInterval(() => {
       setNetTraffic(prev => [...prev.slice(1), Math.floor(Math.random() * 50) + 15]);
+      setPingTimes({
+        'vps-1': Math.floor(Math.random() * 6) + 12,
+        'vps-2': Math.floor(Math.random() * 8) + 13,
+        'minipc': Math.floor(Math.random() * 10) + 18,
+      });
     }, 3000);
     return () => clearInterval(interval);
   }, []);
@@ -123,21 +133,19 @@ export default function App() {
                 <a href="https://linkedin.com/in/krishbansal-dev" target="_blank" rel="noreferrer" className="social-link">
                   <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
                 </a>
-                <div style={{ position: 'relative' }}>
-                  <button 
-                    onClick={handleMailClick} 
-                    className="social-link"
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-                    title="Click to copy or email: contact@krishbansal.dev"
-                  >
-                    <Mail className="w-4 h-4" />
-                  </button>
+                <button 
+                  onClick={handleMailClick} 
+                  className="social-link"
+                  style={{ position: 'relative', width: '100%', padding: 0 }}
+                  title="Click to copy or email: contact@krishbansal.dev"
+                >
+                  <Mail className="w-4 h-4" />
                   {copiedEmail && (
                     <span className="copied-tooltip">
                       Copied!
                     </span>
                   )}
-                </div>
+                </button>
                 <a href="https://krishbansal.dev" target="_blank" rel="noreferrer" className="social-link">
                   <Globe className="w-4 h-4" />
                 </a>
@@ -955,7 +963,10 @@ export default function App() {
             {/* TAB CONTENT: EDUCATION */}
             {activeTab === 'education' && (
               <div className="flex-col-gap-24">
-                <h2 className="school-title" style={{ textAlign: 'left', marginBottom: '8px' }}>Education & Application Focus</h2>
+                <div>
+                  <h2 className="school-title" style={{ textAlign: 'left', marginBottom: '8px' }}>Education & Application Focus</h2>
+                  <p className="school-desc" style={{ textAlign: 'left', fontSize: '13px' }}>Academic background and target institution details.</p>
+                </div>
                 
                 <div className="grid-3col">
                   {/* Plaksha University */}
@@ -1038,6 +1049,40 @@ export default function App() {
                       </span>
                     </div>
                   </div>
+                </div>
+
+                <div className="border-t border-[rgba(255,255,255,0.05)] pt-6" style={{ marginTop: '16px' }}>
+                  <h2 className="school-title" style={{ textAlign: 'left', marginBottom: '8px' }}>Self-Hosted Lab Infrastructure</h2>
+                  <p className="school-desc" style={{ textAlign: 'left', fontSize: '13px' }}>Virtual machines and local host overlays managed via Netbird mesh VPN.</p>
+                </div>
+
+                <div className="grid-3col">
+                  {[
+                    { id: 'vps-1', name: 'VM 1', type: 'Oracle Cloud ARM', role: 'Deployments and Developments (VM)', icon: Globe },
+                    { id: 'vps-2', name: 'VM 2', type: 'Oracle Cloud ARM', role: 'VM2 (SaaS)', icon: Shield },
+                    { id: 'minipc', name: 'PC', type: 'Local Mini PC (Dynamic IPv6)', role: 'Testing and Experiments (PC)', icon: Database }
+                  ].map(server => {
+                    const Icon = server.icon;
+                    return (
+                      <div key={server.id} className="card-glass flex flex-col justify-between">
+                        <div>
+                          <div className="flex justify-between items-start mb-3">
+                            <div className="icon-box">
+                              <Icon className="w-4 h-4 text-indigo-400" />
+                            </div>
+                            <span className="ping-badge">
+                              <span className="ping-dot"></span>
+                              {pingTimes[server.id] || 15}ms
+                            </span>
+                          </div>
+                          
+                          <h4 className="school-title" style={{ textAlign: 'left', fontSize: '13px', fontFamily: 'var(--font-mono)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{server.name}</h4>
+                          <p className="school-subtitle" style={{ textAlign: 'left', marginBottom: '8px' }}>{server.type}</p>
+                          <p className="school-desc" style={{ textAlign: 'left', fontSize: '11px' }}>{server.role}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             )}
