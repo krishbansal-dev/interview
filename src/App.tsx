@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Terminal, 
   Layout, 
@@ -15,20 +15,10 @@ import {
   X 
 } from 'lucide-react';
 
-// Types for Terminal Mode
-interface TerminalHistoryItem {
-  command: string;
-  output: React.ReactNode;
-}
+
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('dashboard');
-  const [mode, setMode] = useState<'gui' | 'terminal'>('gui');
-  
-  // Terminal states
-  const [terminalInput, setTerminalInput] = useState<string>('');
-  const [terminalHistory, setTerminalHistory] = useState<TerminalHistoryItem[]>([]);
-  const terminalEndRef = useRef<HTMLDivElement | null>(null);
   
   // Interactive GUI states
   const [labStatus, setLabStatus] = useState<string>('idle');
@@ -47,13 +37,6 @@ export default function App() {
     'minipc': 22
   });
 
-  // Scroll to bottom of terminal when history changes
-  useEffect(() => {
-    if (terminalEndRef.current) {
-      terminalEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [terminalHistory]);
-
   // Simulate network traffic updates
   useEffect(() => {
     const interval = setInterval(() => {
@@ -67,175 +50,7 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // Print welcome message on terminal initialize
-  useEffect(() => {
-    if (mode === 'terminal' && terminalHistory.length === 0) {
-      setTerminalHistory([
-        {
-          command: 'systemctl init',
-          output: (
-            <div className="text-slate-400">
-              <p className="text-indigo-400 font-bold mb-1">KRISH-OS v1.0.0 (AI-Accelerated Architecture)</p>
-              <p>Type <span className="text-cyan-400 font-semibold">help</span> to view available system commands.</p>
-              <p>Type <span className="text-purple-400 font-semibold">gui</span> to exit terminal mode and switch to visual dashboard.</p>
-              <p className="mt-2 text-slate-500">---------------------------------------------------------</p>
-            </div>
-          )
-        }
-      ]);
-    }
-  }, [mode]);
 
-  // Terminal commands interpreter
-  const handleTerminalSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const cmd = terminalInput.trim().toLowerCase();
-    if (!cmd) return;
-
-    let output: React.ReactNode = '';
-
-    switch (cmd) {
-      case 'help':
-        output = (
-          <div className="grid grid-cols-2 gap-2 max-w-md text-slate-300">
-            <div><span className="text-cyan-400 font-semibold">about</span> - Summary of Krish</div>
-            <div><span className="text-cyan-400 font-semibold">projects</span> - Engineering portfolios</div>
-            <div><span className="text-cyan-400 font-semibold">skills</span> - Main technical stacks</div>
-            <div><span className="text-cyan-400 font-semibold">lab</span> - Host specs & private nodes</div>
-            <div><span className="text-cyan-400 font-semibold">minecraft</span> - Host origin story logs</div>
-            <div><span className="text-cyan-400 font-semibold">contact</span> - Emails & social profiles</div>
-            <div><span className="text-cyan-400 font-semibold">gui</span> - Return to dashboard UI</div>
-            <div><span className="text-cyan-400 font-semibold">clear</span> - Clear terminal log</div>
-          </div>
-        );
-        break;
-      case 'about':
-        output = (
-          <div className="text-slate-300 space-y-2 max-w-2xl">
-            <p className="text-white font-semibold">Krish Bansal — Systems Architect & AI-Accelerated Engineer</p>
-            <p className="text-slate-400">Specializes in designing end-to-end cloud architectures, containerized deployments, and WebRTC performance pipelines by leveraging AI as an engineering multiplier.</p>
-            <p><span className="text-cyan-400 font-bold">JEE Mathematics:</span> 90+ Percentile (strong quantitative core; other subjects low due to focus on practical engineering over rote recall).</p>
-            <p><span className="text-amber-400 font-bold">Developer Philosophy:</span> Focused on builder-first systems engineering, infrastructure orchestration, and practical software creation. Believer in learning through active building and production deployment.</p>
-          </div>
-        );
-        break;
-      case 'projects':
-        output = (
-          <div className="text-slate-300 space-y-4 max-w-2xl">
-            <div>
-              <p className="text-indigo-400 font-bold">1. PeerDrop (peerdrop.krishbansal.dev)</p>
-              <p className="text-slate-400">Decentralized, encrypted browser P2P file transfers and video calling.</p>
-              <p className="text-xs text-cyan-400 mt-1">Stack: WebRTC, WebSockets, HTML5 Streams, Coturn STUN/TURN, Cloudflare Tunnels.</p>
-            </div>
-            <div>
-              <p className="text-indigo-400 font-bold">2. SalesForce Tracker (Employee SaaS)</p>
-              <p className="text-slate-400">A geofenced tracking system with React Native client & spatial database query logs.</p>
-              <p className="text-xs text-cyan-400 mt-1">Stack: Expo, Node.js, Express, Postgres/PostGIS, Redis, SQLite cache.</p>
-            </div>
-            <p className="text-xs text-slate-500">Type "cat projects/peerdrop" or "cat projects/salesforce" (or click GUI) for details.</p>
-          </div>
-        );
-        break;
-      case 'cat projects/peerdrop':
-        output = (
-          <div className="text-slate-300 space-y-2 max-w-2xl font-mono text-xs">
-            <p className="text-purple-400 font-semibold">FILE: projects/peerdrop.md</p>
-            <p>• <span className="text-white">Signaling:</span> Relays metadata over secure WebSockets for room matches.</p>
-            <p>• <span className="text-white">SDP Fix:</span> Pre-allocates RTCRtpTransceiver slots to swap mic/cam with replaceTrack and avoid browser negotiation renegotiation race conditions (InvalidAccessError).</p>
-            <p>• <span className="text-white">Memory:</span> Streams files in 64KB SCTP chunks, monitoring bufferedAmount for backpressure limits to bypass browser RAM allocation crashes.</p>
-            <p>• <span className="text-white">Traverses strict NATs</span> using self-hosted Coturn TURN nodes.</p>
-          </div>
-        );
-        break;
-      case 'cat projects/salesforce':
-        output = (
-          <div className="text-slate-300 space-y-2 max-w-2xl font-mono text-xs">
-            <p className="text-purple-400 font-semibold">FILE: projects/salesforce.md</p>
-            <p>• <span className="text-white">Geofencing:</span> Employs PostGIS spatial queries (points/polygons) to verify locations within 50m of shop registers.</p>
-            <p>• <span className="text-white">Bridge:</span> Bidirectional JS bridge transfers native GPS location coordinates securely into WebLeaflet containers, bypassing Android WebView permission blocks.</p>
-            <p>• <span className="text-white">Speed:</span> Map rendering runs fluidly at 60 FPS using CSS GPU-accelerated transforms instead of layout-triggering styles.</p>
-            <p>• <span className="text-white">Offline Buffer:</span> Coordinates write to SQLite local buffer during dropouts, batch uploading on sync.</p>
-          </div>
-        );
-        break;
-      case 'skills':
-        output = (
-          <div className="grid grid-cols-2 gap-4 max-w-xl text-slate-300">
-            <div>
-              <p className="text-white font-semibold border-b border-slate-700 pb-1 mb-2">DevOps & Infra</p>
-              <p className="text-xs">Docker, Docker Compose, Linux CLI, SSH, GitHub Actions (CI/CD), Portainer</p>
-            </div>
-            <div>
-              <p className="text-white font-semibold border-b border-slate-700 pb-1 mb-2">Network Routing</p>
-              <p className="text-xs">Cloudflare Tunnels & Pages, Nginx Proxy Manager, Netbird VPN (Mesh), STUN/TURN (Coturn)</p>
-            </div>
-            <div>
-              <p className="text-white font-semibold border-b border-slate-700 pb-1 mb-2">Backend & Databases</p>
-              <p className="text-xs">PostgreSQL (PostGIS), Redis, SQLite, Node.js, Express, TypeScript, Prisma ORM</p>
-            </div>
-            <div>
-              <p className="text-white font-semibold border-b border-slate-700 pb-1 mb-2">AI Architecting</p>
-              <p className="text-xs">AI-Native Code Orchestration, Microservices, Zero-Trust Blueprinting, Dynamic DNS integrations</p>
-            </div>
-          </div>
-        );
-        break;
-      case 'lab':
-        output = (
-          <div className="text-slate-300 font-mono text-xs space-y-2 max-w-2xl">
-            <p className="text-white font-semibold">Active Infrastructure Mapping:</p>
-            <p>├─ [Edge & SaaS Host] <span className="text-emerald-400">vps-1.krishbansal.dev</span> (Oracle Cloud ARM) | Status: ONLINE | Ping: {pingTimes['vps-1']}ms</p>
-            <p>├─ [Relay Node]        <span className="text-emerald-400">vps-2.krishbansal.dev</span> (Oracle Cloud ARM) | Status: ONLINE | Ping: {pingTimes['vps-2']}ms</p>
-            <p>└─ [Home Lab Server]    <span className="text-emerald-400">bare-metal-mini-pc</span> (Dynamic IPv6 + CF Proxy) | Status: ONLINE | Ping: {pingTimes['minipc']}ms</p>
-            <p className="mt-2 text-cyan-400">Zero-Trust mesh interconnection overlay managed via Netbird mesh VPN.</p>
-          </div>
-        );
-        break;
-      case 'minecraft':
-        output = (
-          <div className="text-slate-300 font-mono text-xs space-y-1">
-            <p className="text-slate-500">// Simulating SSH Minecraft Server setup logs (2018)</p>
-            <p className="text-emerald-500">[Minecraft-Server] Loading libraries, please wait...</p>
-            <p className="text-emerald-500">[Minecraft-Server] Starting minecraft server version 1.12.2</p>
-            <p className="text-emerald-500">[Minecraft-Server] Loading properties</p>
-            <p className="text-emerald-500">[Minecraft-Server] Default game type: SURVIVAL</p>
-            <p className="text-emerald-500">[Minecraft-Server] Generating area 0%.. 42%.. 88%.. 100%</p>
-            <p className="text-cyan-400">[Minecraft-Server] Krish SSH'd into the server from local IPv6 gateway</p>
-            <p className="text-yellow-400">[Minecraft-Server] Krish typed: op krishbansal</p>
-            <p className="text-purple-400">[Server: Opped krishbansal]</p>
-            <p className="text-white mt-2 font-bold">The Turning Point: Host Minecraft &rarr; Master Linux CLI, Open SSH Ports, Map DNS.</p>
-          </div>
-        );
-        break;
-      case 'contact':
-        output = (
-          <div className="text-slate-300 font-mono text-xs space-y-1">
-            <p>• Email:    <a href="mailto:contact@krishbansal.dev" className="text-indigo-400 underline">contact@krishbansal.dev</a></p>
-            <p>• Website:  <a href="https://krishbansal.dev" target="_blank" rel="noreferrer" className="text-indigo-400 underline">krishbansal.dev</a></p>
-            <p>• GitHub:   <a href="https://github.com/krishbansal-dev" target="_blank" rel="noreferrer" className="text-indigo-400 underline">github.com/krishbansal-dev</a></p>
-            <p>• LinkedIn: <a href="https://linkedin.com/in/krishbansal-dev" target="_blank" rel="noreferrer" className="text-indigo-400 underline">linkedin.com/in/krishbansal-dev</a></p>
-          </div>
-        );
-        break;
-      case 'gui':
-        setMode('gui');
-        setTerminalInput('');
-        return;
-      case 'clear':
-        setTerminalHistory([]);
-        setTerminalInput('');
-        return;
-      default:
-        output = (
-          <p className="text-rose-400 font-semibold font-mono">
-            bash: command not found: {cmd}. Type "help" for a list of valid actions.
-          </p>
-        );
-    }
-
-    setTerminalHistory(prev => [...prev, { command: terminalInput, output }]);
-    setTerminalInput('');
-  };
 
   // Simulated server CLI console triggering in GUI mode
   const triggerServerConsole = (serverName: string) => {
@@ -299,29 +114,13 @@ export default function App() {
           </div>
         </div>
 
-        {/* Mode Selector */}
-        <div className="mode-toggle-container">
-          <button 
-            onClick={() => setMode('gui')}
-            className={`mode-toggle-btn ${mode === 'gui' ? 'active' : ''}`}
-          >
-            <Layout className="w-3.5 h-3.5" />
-            Dashboard
-          </button>
-          <button 
-            onClick={() => setMode('terminal')}
-            className={`mode-toggle-btn ${mode === 'terminal' ? 'active terminal' : ''}`}
-          >
-            <Terminal className="w-3.5 h-3.5" />
-            Terminal
-          </button>
-        </div>
+
       </header>
 
       {/* Main Dashboard Layout */}
-      {mode === 'gui' ? (
-        <div className="dashboard-layout">
-          {/* Sidebar Navigation */}
+      <div className="dashboard-layout">
+        <div className="sidebar-placeholder"></div>
+        {/* Sidebar Navigation */}
           <aside className="sidebar">
             <div className="sidebar-top">
               <div className="sidebar-title">Navigation</div>
@@ -418,11 +217,11 @@ export default function App() {
                     </div>
                     
                     <button 
-                      onClick={() => setMode('terminal')}
+                      onClick={() => setActiveTab('discussion')}
                       className="hero-action-btn"
                     >
-                      <Terminal className="w-4 h-4 text-cyan-400" />
-                      $ run ssh_interview
+                      <CheckSquare className="w-4 h-4 text-indigo-400" />
+                      Explore Discussion Topics
                     </button>
                   </div>
 
@@ -1258,37 +1057,6 @@ export default function App() {
 
           </main>
         </div>
-      ) : (
-        /* TERMINAL/SHELL MODE */
-        <div className="terminal-mode-layout">
-          <div className="terminal-history-container">
-            {/* Terminal History list */}
-            {terminalHistory.map((item, index) => (
-              <div key={index} className="space-y-2">
-                <p className="text-cyan-400">
-                  <span>krish-os@admin:~$</span> <span className="text-white font-semibold">{item.command}</span>
-                </p>
-                <div className="pl-4">{item.output}</div>
-              </div>
-            ))}
-            <div ref={terminalEndRef}></div>
-          </div>
-
-          {/* Terminal Input form */}
-          <form onSubmit={handleTerminalSubmit} className="terminal-input-row">
-            <span className="text-cyan-400 shrink-0 font-bold">krish-os@admin:~$</span>
-            <input 
-              type="text"
-              value={terminalInput}
-              onChange={(e) => setTerminalInput(e.target.value)}
-              className="terminal-input-field"
-              placeholder="type help to check systems, or gui to return..."
-              autoFocus
-            />
-            <span className="terminal-cursor shrink-0"></span>
-          </form>
-        </div>
-      )}
     </div>
   );
 }

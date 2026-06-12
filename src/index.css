@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
 .dashboard-layout {
   display: grid;
   grid-template-columns: 280px 1fr;
-  min-height: 100vh;
+  min-height: calc(100vh - 73px);
 }
 
 @media (max-width: 1024px) {
@@ -91,13 +91,17 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar {
   background-color: var(--bg-sidebar);
   border-right: 1px solid var(--border-main);
-  padding: 24px;
+  padding: 20px 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
-  position: sticky;
-  top: 0;
+  height: calc(100vh - 73px);
+  position: fixed;
+  top: 73px;
+  left: 0;
+  width: 280px;
+  overflow: hidden;
+  z-index: 10;
 }
 
 @media (max-width: 1024px) {
@@ -164,7 +168,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Sidebar social channel section */
 .sidebar-footer {
   border-top: 1px solid rgba(255, 255, 255, 0.04);
-  padding-top: 24px;
+  padding-top: 16px;
 }
 
 .social-title {
@@ -237,6 +241,8 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 73px;
+  box-sizing: border-box;
 }
 
 .header-logo-section {
@@ -1297,5 +1303,15 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 100%;
   object-fit: contain;
   transform: scale(1.30);
+}
+
+.sidebar-placeholder {
+  width: 280px;
+  flex-shrink: 0;
+}
+@media (max-width: 1024px) {
+  .sidebar-placeholder {
+    display: none;
+  }
 }
 
