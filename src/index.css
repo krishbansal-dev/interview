@@ -1397,14 +1397,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .logo-box.logo-amity {
   background: #ffffff;
-  padding: 2px;
+  padding: 4px;
   overflow: hidden;
 }
 .header-amity-logo {
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
-  transform: scale(1.30);
 }
 
 .sidebar-placeholder {
