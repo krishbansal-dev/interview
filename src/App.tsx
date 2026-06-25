@@ -74,11 +74,11 @@ export default function App() {
       {/* Top Header Panel */}
       <header className="app-header">
         <div className="header-logo-section">
-          <div className="logo-box logo-plaksha">
+          <div className="logo-box logo-amity">
             <img 
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaupKpN5w0PIbI6_vYMFEnxN0OnBXOI09EUw&s" 
-              alt="Plaksha Emblem" 
-              className="header-plaksha-logo" 
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPLmcoG8cMONDAAFy53uTDPk3cPBEt78glKAaoQhL_1Q&s=10" 
+              alt="Amity Emblem" 
+              className="header-amity-logo" 
             />
           </div>
           <div>
@@ -249,7 +249,7 @@ export default function App() {
                           "I use AI as a design and engineering multiplier. While I can read and understand code syntax flawlessly across HTML, CSS, JS, and Python, I rely on AI to generate implementation details. This allows me to focus on the big picture: planning system architecture, designing database schemas, organizing secure networking tunnels, and managing server host configurations."
                         </p>
                         <p style={{ color: 'var(--text-main)', fontSize: '13px', lineHeight: '1.6', margin: 0 }}>
-                          "Many developers write code but don't know how to run it in production, scale it, or secure it on the internet. I focus on understanding the world's digital ecosystem so I can build complete, production-ready systems from scratch and ship them immediately. I look forward to deepening my theoretical and code-level understanding at Plaksha, but AI is my current superpower for building at speed."
+                          "Many developers write code but don't know how to run it in production, scale it, or secure it on the internet. I focus on understanding the world's digital ecosystem so I can build complete, production-ready systems from scratch and ship them immediately. I look forward to deepening my theoretical and code-level understanding at Amity, but AI is my current superpower for building at speed."
                         </p>
                         <div className="quote-box" style={{ borderLeft: '3px solid var(--accent-primary)', backgroundColor: 'rgba(99, 102, 241, 0.05)', padding: '16px', borderRadius: '8px', fontSize: '15px', color: '#ffffff', fontWeight: 'bold', fontStyle: 'italic', marginTop: '8px' }}>
                           "I don't just write code; I orchestrate complete digital systems."
@@ -384,7 +384,7 @@ export default function App() {
                         "While my 90+ percentile was in Mathematics in JEE Main (with other subjects being low due to my intense focus on active software creation over theoretical chemistry memorization), this score validates my quantitative and logical core. I have always believed that engineering is defined by building. Rather than dedicating my focus to theoretical rote recall in other subjects, I chose to invest my efforts in acquiring practical skills in containerization, mesh network routing, and spatial databases."
                       </p>
                       <div className="quote-box">
-                        "Plaksha University's focus on interdisciplinary engineering and builder-first learning matches my active approach to systems engineering. I aim to deploy production-ready cloud systems and solve real-world scale challenges."
+                        "Amity University's focus on interdisciplinary engineering and builder-first learning matches my active approach to systems engineering. I aim to deploy production-ready cloud systems and solve real-world scale challenges."
                       </div>
                     </div>
                   </div>
@@ -399,7 +399,7 @@ export default function App() {
                         "I use AI as a design and engineering multiplier. While I can read and understand code syntax flawlessly across HTML, CSS, JS, and Python, I rely on AI to generate implementation details. This allows me to focus on the big picture: planning system architecture, designing database schemas, organizing secure networking tunnels, and managing server host configurations."
                       </p>
                       <p className="text-slate-300">
-                        "Many developers write code but don't know how to run it in production, scale it, or secure it on the internet. I focus on understanding the world's digital ecosystem so I can build complete, production-ready systems from scratch and ship them immediately. I look forward to deepening my theoretical and code-level understanding at Plaksha, but AI is my current superpower for building at speed."
+                        "Many developers write code but don't know how to run it in production, scale it, or secure it on the internet. I focus on understanding the world's digital ecosystem so I can build complete, production-ready systems from scratch and ship them immediately. I look forward to deepening my theoretical and code-level understanding at Amity, but AI is my current superpower for building at speed."
                       </p>
                       <p className="text-slate-300 font-semibold mt-4">
                         "I don't just write code; I orchestrate complete digital systems."
@@ -975,23 +975,23 @@ export default function App() {
                 </div>
                 
                 <div className="grid-3col">
-                  {/* Plaksha University */}
+                  {/* Amity University */}
                   <div className="card-glass flex flex-col justify-between">
                     <div>
                       <div className="logo-frame-container">
                         <div className="school-logo-circle">
                           <img 
-                            src="https://cdn.universitykart.com//Content/upload/admin/owzakzf0.d4k.png" 
-                            alt="Plaksha University Logo" 
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPLmcoG8cMONDAAFy53uTDPk3cPBEt78glKAaoQhL_1Q&s=10" 
+                            alt="Amity University Logo" 
                             className="school-logo-img"
                           />
                         </div>
                       </div>
                       
-                      <h3 className="school-title">Plaksha University</h3>
+                      <h3 className="school-title">Amity University</h3>
                       <p className="school-subtitle">Interview: 15th June 2026</p>
                       <p className="school-desc">
-                        Applying for modern interdisciplinary engineering. Excited about Plaksha's applied-first curriculum, tech entrepreneurship focus, and builder-focused environment.
+                        Applying for modern interdisciplinary engineering. Excited about Amity's applied-first curriculum, tech entrepreneurship focus, and builder-focused environment.
                       </p>
                     </div>
 
@@ -1229,7 +1229,7 @@ export default function App() {
                         <h2 className="resume-section-title">Education</h2>
                         
                         <div className="resume-edu-item">
-                          <h3 className="resume-edu-title">Plaksha University</h3>
+                          <h3 className="resume-edu-title">Amity University</h3>
                           <div className="resume-edu-meta">Interview: 15th June 2026</div>
                           <p className="resume-edu-desc">Applying for Interdisciplinary Technology & Engineering; focus on Applied-First Systems.</p>
                         </div>

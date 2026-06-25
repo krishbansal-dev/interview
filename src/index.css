@@ -1395,12 +1395,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.logo-box.logo-plaksha {
+.logo-box.logo-amity {
   background: #ffffff;
   padding: 2px;
   overflow: hidden;
 }
-.header-plaksha-logo {
+.header-amity-logo {
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
